@@ -290,7 +290,7 @@ int port_init(uint16_t port, bool willReceive, struct rte_mempool **mbuf_pools, 
 		rx_rings = 0;
 	}
 
-	if (port >= rte_eth_dev_count())
+	if (port >= rte_eth_dev_count_avail())
 		return -1;
 
 	struct rte_eth_conf port_conf_default = {
