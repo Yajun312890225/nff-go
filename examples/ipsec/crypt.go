@@ -5,7 +5,7 @@
 // Only IPv4, Only tunnel, Only ESP, Only AES-128-CBC
 package ipsec
 
-import "github.com/intel-go/nff-go/examples/ipsec/crypto_mb"
+import "github.com/Yajun312890225/nff-go/examples/ipsec/crypto_mb"
 
 import "crypto/aes"
 import "crypto/cipher"

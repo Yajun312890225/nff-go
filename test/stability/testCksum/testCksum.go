@@ -14,12 +14,12 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/intel-go/nff-go/flow"
-	"github.com/intel-go/nff-go/packet"
-	"github.com/intel-go/nff-go/types"
+	"github.com/Yajun312890225/nff-go/flow"
+	"github.com/Yajun312890225/nff-go/packet"
+	"github.com/Yajun312890225/nff-go/types"
 
-	"github.com/intel-go/nff-go/test/stability/stabilityCommon"
-	"github.com/intel-go/nff-go/test/stability/testCksum/testCksumCommon"
+	"github.com/Yajun312890225/nff-go/test/stability/stabilityCommon"
+	"github.com/Yajun312890225/nff-go/test/stability/testCksum/testCksumCommon"
 )
 
 // Test with flag testScenario=1:

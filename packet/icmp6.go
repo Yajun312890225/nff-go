@@ -7,7 +7,7 @@ package packet
 import (
 	"unsafe"
 
-	"github.com/intel-go/nff-go/types"
+	"github.com/Yajun312890225/nff-go/types"
 )
 
 const (

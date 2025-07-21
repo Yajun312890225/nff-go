@@ -8,8 +8,8 @@ import (
 	"encoding/hex"
 	"flag"
 
-	"github.com/intel-go/nff-go/flow"
-	"github.com/intel-go/nff-go/packet"
+	"github.com/Yajun312890225/nff-go/flow"
+	"github.com/Yajun312890225/nff-go/packet"
 )
 
 var firstFlow *flow.Flow

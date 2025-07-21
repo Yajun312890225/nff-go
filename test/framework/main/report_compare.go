@@ -4,7 +4,7 @@
 
 package main
 
-import "github.com/intel-go/nff-go/test/framework"
+import "github.com/Yajun312890225/nff-go/test/framework"
 
 import (
 	"encoding/json"

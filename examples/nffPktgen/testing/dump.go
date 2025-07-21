@@ -7,9 +7,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/intel-go/nff-go/examples/nffPktgen/generator"
-	"github.com/intel-go/nff-go/flow"
-	"github.com/intel-go/nff-go/packet"
+	"github.com/Yajun312890225/nff-go/examples/nffPktgen/generator"
+	"github.com/Yajun312890225/nff-go/flow"
+	"github.com/Yajun312890225/nff-go/packet"
 	"os"
 )
 

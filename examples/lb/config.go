@@ -8,9 +8,9 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/intel-go/nff-go/flow"
-	"github.com/intel-go/nff-go/packet"
-	"github.com/intel-go/nff-go/types"
+	"github.com/Yajun312890225/nff-go/flow"
+	"github.com/Yajun312890225/nff-go/packet"
+	"github.com/Yajun312890225/nff-go/types"
 )
 
 type NetworkSubnet struct {

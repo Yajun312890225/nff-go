@@ -25,8 +25,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/intel-go/nff-go/common"
-	"github.com/intel-go/nff-go/internal/low"
+	"github.com/Yajun312890225/nff-go/common"
+	"github.com/Yajun312890225/nff-go/internal/low"
 )
 
 const generatePauseStep = 0.1

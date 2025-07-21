@@ -8,8 +8,8 @@ import (
 	"net"
 	"os"
 
-	"github.com/intel-go/nff-go/internal/low"
-	"github.com/intel-go/nff-go/types"
+	"github.com/Yajun312890225/nff-go/internal/low"
+	"github.com/Yajun312890225/nff-go/types"
 )
 
 // isInit is common for all tests

@@ -4,10 +4,10 @@
 
 package main
 
-import "github.com/intel-go/nff-go/types"
-import "github.com/intel-go/nff-go/flow"
-import "github.com/intel-go/nff-go/packet"
-import "github.com/intel-go/nff-go/examples/ipsec"
+import "github.com/Yajun312890225/nff-go/types"
+import "github.com/Yajun312890225/nff-go/flow"
+import "github.com/Yajun312890225/nff-go/packet"
+import "github.com/Yajun312890225/nff-go/examples/ipsec"
 import "flag"
 import "fmt"
 import "time"

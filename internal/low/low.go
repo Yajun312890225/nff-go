@@ -25,9 +25,9 @@ import (
 	"syscall"
 	"unsafe"
 
-	"github.com/intel-go/nff-go/asm"
-	"github.com/intel-go/nff-go/common"
-	"github.com/intel-go/nff-go/types"
+	"github.com/Yajun312890225/nff-go/asm"
+	"github.com/Yajun312890225/nff-go/common"
+	"github.com/Yajun312890225/nff-go/types"
 )
 
 var (

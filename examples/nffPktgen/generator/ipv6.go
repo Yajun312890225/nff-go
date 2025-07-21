@@ -13,8 +13,8 @@ import (
 	"net"
 	"strings"
 
-	"github.com/intel-go/nff-go/packet"
-	"github.com/intel-go/nff-go/types"
+	"github.com/Yajun312890225/nff-go/packet"
+	"github.com/Yajun312890225/nff-go/types"
 )
 
 func addAddr(a *[]byte, b []byte) {

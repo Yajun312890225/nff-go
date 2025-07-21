@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/intel-go/nff-go/common"
+	"github.com/Yajun312890225/nff-go/common"
 )
 
 func init() {

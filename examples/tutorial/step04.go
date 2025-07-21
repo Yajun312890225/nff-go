@@ -1,7 +1,7 @@
 package main
 
-import "github.com/intel-go/nff-go/flow"
-import "github.com/intel-go/nff-go/packet"
+import "github.com/Yajun312890225/nff-go/flow"
+import "github.com/Yajun312890225/nff-go/packet"
 
 func main() {
 	flow.CheckFatal(flow.SystemInit(nil))
