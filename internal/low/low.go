@@ -14,6 +14,12 @@ package low
 
 /*
 #include "low.h"
+#include <rte_ethdev.h>
+
+// 用 C 包装一下，暴露给 cgo
+static int my_rte_eth_dev_count(void) {
+    return rte_eth_dev_count();
+}
 */
 import "C"
 
@@ -598,7 +604,7 @@ func FreeKNI(port uint16) error {
 
 // GetPortsNumber gets total number of available Ethernet devices.
 func GetPortsNumber() int {
-	return int(C.rte_eth_dev_count())
+	return int(C.my_rte_eth_dev_count())
 }
 
 func CheckPortRSS(port uint16) int32 {
