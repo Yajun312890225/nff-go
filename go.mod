@@ -1,8 +1,8 @@
-module github.com/intel-go/nff-go
+module github.com/Yajun312890225/nff-go
 
 go 1.23.0
 
-toolchain go1.24.2
+
 
 require (
 	github.com/docker/docker v1.13.1
