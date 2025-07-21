@@ -940,7 +940,7 @@ bool check_hwtxchecksum_capability(uint16_t port_id) {
 		DEV_TX_OFFLOAD_TCP_CKSUM;
 	struct rte_eth_dev_info dev_info;
 
-	if (port_id >= rte_eth_dev_count())
+	if (port_id >= rte_eth_dev_count_avail())
 		return false;
 
 	memset(&dev_info, 0, sizeof(dev_info));
@@ -952,7 +952,7 @@ bool check_hwrxpackets_timestamp_capability(uint16_t port_id) {
 	uint64_t flags = DEV_RX_OFFLOAD_TIMESTAMP;
 	struct rte_eth_dev_info dev_info;
 
-	if (port_id >= rte_eth_dev_count())
+	if (port_id >= rte_eth_dev_count_avail())
 		return false;
 
 	memset(&dev_info, 0, sizeof(dev_info));
