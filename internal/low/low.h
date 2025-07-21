@@ -295,7 +295,7 @@ int port_init(uint16_t port, bool willReceive, struct rte_mempool **mbuf_pools, 
 
 	struct rte_eth_conf port_conf_default = {
 		.rxmode = { .max_rx_pkt_len = RTE_ETHER_MAX_LEN,
-					.mq_mode = ETH_MQ_RX_RSS    },
+					.mq_mode = ETH_MQ_TX_NONE    },
 		.txmode = { .mq_mode = ETH_MQ_TX_NONE, },
 		.rx_adv_conf.rss_conf.rss_key = NULL,
 		.rx_adv_conf.rss_conf.rss_hf = dev_info.flow_type_rss_offloads
