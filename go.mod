@@ -1,6 +1,6 @@
 module github.com/Yajun312890225/nff-go
 
-go 1.23.0
+go 1.19
 
 
 
