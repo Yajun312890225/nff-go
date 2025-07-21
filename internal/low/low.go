@@ -18,9 +18,9 @@ package low
 
 // 用 C 包装一下，暴露给 cgo
 static int my_rte_eth_dev_count(void) {
-    return rte_eth_dev_count();
+    return rte_eth_dev_count_avail();
 }
-	
+
 */
 import "C"
 
