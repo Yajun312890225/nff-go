@@ -264,16 +264,26 @@ func (ffi *instance) startNewClone(scheduler *scheduler, n int) (err error) {
 	ff := ffi.ff
 	var core int
 	var index int
+	var coreShared bool = false
+
 	if ff.fType != comboKNI {
 		core, index, err = scheduler.getCore()
 		if err != nil {
 			common.LogWarning(common.Debug, "Can't start new clone for", ff.name, "instance", n)
 			return err
 		}
-		common.LogDebug(common.Debug, "Start new clone for", ff.name, "instance", n, "at", core, "core")
+
+		// 检查是否在共享核心模式
+		if scheduler.usedCores >= uint8(len(scheduler.cores)) {
+			coreShared = true
+			common.LogWarning(common.Debug, "Start new clone for", ff.name, "instance", n, "at shared core", core)
+		} else {
+			common.LogDebug(common.Debug, "Start new clone for", ff.name, "instance", n, "at", core, "core")
+		}
 	} else {
 		common.LogDebug(common.Debug, "Start new clone for", ff.name, "instance", n, "at KNI Linux core")
 	}
+
 	ffi.clone = append(ffi.clone, &clonePair{index, [2]chan int{nil, nil}, process})
 	ffi.cloneNumber++
 	if ff.fType != receiveRSS && ff.fType != sendReceiveKNI && ff.fType != comboKNI {
@@ -283,7 +293,12 @@ func (ffi *instance) startNewClone(scheduler *scheduler, n int) (err error) {
 	go func() {
 		if ff.fType != receiveRSS && ff.fType != sendReceiveKNI && ff.fType != comboKNI {
 			if err := low.SetAffinity(core); err != nil {
-				common.LogFatal(common.Debug, "Failed to set affinity to", core, "core: ", err)
+				// 在核心共享模式下，设置亲和性失败不应该是致命错误
+				if coreShared {
+					common.LogWarning(common.Debug, "Failed to set affinity to shared core", core, ":", err, "- continuing anyway")
+				} else {
+					common.LogFatal(common.Debug, "Failed to set affinity to", core, "core: ", err)
+				}
 			}
 			if ff.fType == segmentCopy || ff.fType == fastGenerate || ff.fType == generate {
 				ff.cloneFunction(ff.Parameters, ffi.inIndex, ffi.clone[ffi.cloneNumber-1].channel, ffi.report, cloneContext(ff.context))
@@ -698,11 +713,16 @@ func (ff *flowFunction) updateReportedState() {
 }
 
 func (scheduler *scheduler) setCoreByIndex(i int) {
-	scheduler.cores[i].isfree = true
-	scheduler.usedCores--
+	// 在核心共享模式下，不真正释放核心
+	if i < len(scheduler.cores) && scheduler.cores[i].isfree == false {
+		scheduler.cores[i].isfree = true
+		scheduler.usedCores--
+	}
+	// 如果是共享核心（index=0且usedCores>1），则不做任何操作
 }
 
 func (scheduler *scheduler) getCore() (int, int, error) {
+	// 首先尝试找到空闲核心
 	for i := range scheduler.cores {
 		if scheduler.cores[i].isfree == true {
 			scheduler.cores[i].isfree = false
@@ -710,7 +730,15 @@ func (scheduler *scheduler) getCore() (int, int, error) {
 			return scheduler.cores[i].id, i, nil
 		}
 	}
-	return 0, 0, common.WrapWithNFError(nil, "Requested number of cores isn't enough.", common.NotEnoughCores)
+
+	// 如果没有空闲核心，强制共享第一个可用核心
+	if len(scheduler.cores) > 0 {
+		common.LogWarning(common.Debug, "No free cores available, sharing core", scheduler.cores[0].id)
+		// 返回第一个核心，但不标记为占用，允许其他组件也使用
+		return scheduler.cores[0].id, 0, nil
+	}
+
+	return 0, 0, common.WrapWithNFError(nil, "No cores available at all.", common.NotEnoughCores)
 }
 
 func (ffi *instance) checkInputRingClonable(min uint32) bool {
